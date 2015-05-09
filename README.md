@@ -7,6 +7,7 @@ Example
 ```javascript
 
   // ajax request when a form is submited
+  ///////////////////////////////////////
   var form = document.querySelector('#form');
 
   form.addEventListener('submit', function (e) {
@@ -32,6 +33,7 @@ Example
   });
   
   // when upload files with input typpe file
+  //////////////////////////////////////////
   document.querySelector('input[type="file"]').addEventListener('change', function(e) {
 
      phyrus.uploadFiles(this.files)
@@ -47,6 +49,7 @@ Example
   
   // or we can do the same like this, if we put a 
   // data-uploadfiles attribute in the input type file
+  ////////////////////////////////////////////////////
   phyrus.uploadFiles({
       success: function (e) {
           console.log("custom success callback");
@@ -58,6 +61,7 @@ Example
   }).into('test.php');
   
   // when we want to use drag and drop to upload files
+  ////////////////////////////////////////////////////
   var dropzone = document.querySelector('.dropzone');
 
   // events listeners
