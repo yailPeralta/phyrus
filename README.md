@@ -9,8 +9,9 @@ Example
 
         form.addEventListener('submit', function (e) {
             e.preventDefault();
-
-            p.ajax()
+            
+            // also you could write it like this p.ajax() 
+            phyrus.ajax()
 
                 .request({
                     url: 'testPost.php',
