@@ -1,0 +1,53 @@
+.dz-clickable, .clickable{
+    cursor: pointer;
+}
+.dropzone{
+    background: #FAFCFD linear-gradient(
+            135deg, rgba(0, 0, 0, .03) 25%,
+            transparent 25%, transparent 50%,
+            rgba(0, 0, 0, .03) 50%,
+            rgba(0, 0, 0, .03) 75%,
+            transparent 75%,
+            transparent);
+    background-size: 16px 16px;
+    border: dashed 4px transparent;
+    border-radius: 4px;
+    margin: 10px auto 30px;
+    padding: 10px;
+    width: 60%;
+    height: 140px;
+    transition: background-color 0.3s;
+}
+.dropzone input[type="file"]{
+    display: none;
+}
+.drop-active {
+    background: #F3F5F6;
+    border: dashed 4px #aaa;
+}
+
+.drop-target {
+    background-color: #29e;
+    border-color: #fff;
+    border-style: solid;
+}
+
+.drag-drop {
+    display: inline-block;
+    min-width: 40px;
+    padding: 2em 0.5em;
+
+    color: #fff;
+    background-color: #29e;
+    border: solid 2px #fff;
+
+    -webkit-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+
+    transition: background-color 0.3s;
+}
+
+.drag-drop.can-drop {
+    color: #000;
+    background-color: #4e4;
+}
