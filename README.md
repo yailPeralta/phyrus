@@ -32,7 +32,7 @@ Example
 
   });
   
-  // when upload files with input typpe file
+  // when upload files with input type file
   //////////////////////////////////////////
   document.querySelector('input[type="file"]').addEventListener('change', function(e) {
 
