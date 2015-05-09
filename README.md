@@ -37,13 +37,13 @@ Example
   document.querySelector('input[type="file"]').addEventListener('change', function(e) {
 
      phyrus.uploadFiles(this.files)
-     .into('test.php')
-     .then(function (response) {
-        console.log(response);
-     })
-     .catch(function(response){
-        console.log(response)
-     });
+       .into('test.php')
+       .then(function (response) {
+          console.log(response);
+       })
+       .catch(function(response){
+          console.log(response)
+       });
 
   }, false);
   
