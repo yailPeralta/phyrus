@@ -14,10 +14,10 @@ Example
       e.preventDefault();
       
       // also you could write it like this p.ajax() 
-      phyrus.ajax()
+      phyrus.ajax('testPost.php') // url to which the request is made
 
           .request({
-              url: 'testPost.php',
+              // url: 'testPost.php', you can also put the url here
               method: 'POST',
               data: new FormData(e.target)
           })
