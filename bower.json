@@ -1,0 +1,30 @@
+{
+  "name": "phyrus",
+  "version": "1.0.0",
+  "authors": [
+    "Yail Peralta <yailpz@hotmail.com>"
+  ],
+  "description": "A simple library to make ajax request and upload files easily with XMLHttpRequest 2",
+  "main": "phyrus.js",
+  "moduleType": [
+    "amd",
+    "globals"
+  ],
+  "keywords": [
+    "ajax",
+    "XMLHttpRequest",
+    "XHR",
+    "file",
+    "upload"
+  ],
+  "license": "MIT",
+  "homepage": "phyrus.net",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "www/lib",
+    "test",
+    "tests"
+  ]
+}
