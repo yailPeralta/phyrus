@@ -1,4 +1,4 @@
-# phyrus
+# phyrus v1.0.0
 A simple library to make ajax request with XMLHttpRequest 2 and upload files easily
 
 ## Installation
