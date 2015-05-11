@@ -1,5 +1,5 @@
 /**
- * phyrus.js v1.2.4
+ * phyrus.js v1.0.0
  * a JavaScript library to make ajax request
  * with XMLHttpRequest 2 and upload files easily.
  *
