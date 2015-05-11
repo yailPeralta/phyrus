@@ -1,6 +1,21 @@
 # phyrus
 A simple library to make ajax request with XMLHttpRequest 2 and upload files easily
 
+## Installation
+1. First download the phyrus.js file into your project
+2. Then you have to include it in your Html5 document
+
+``` html
+<!-- You have to put the Html5 doctype -->
+<!DOCTYPE html>
+<html>
+  <!-- phyrus -->
+  <script src="phyrus.js"></script>
+</html>
+
+```
+
+
 Example
 -------
 
