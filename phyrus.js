@@ -1,5 +1,5 @@
 /**
- * phyrus.js v1.0.0
+ * phyrus.js v1.0.1
  * a JavaScript library to make ajax request
  * with XMLHttpRequest 2 and upload files easily.
  *
@@ -14,7 +14,7 @@
     var
         phyrus  = global.phyrus || {},
 
-        version = "1.0",
+        version = "1.0.1",
 
         // private helpers
         _isArray = function ( thing ){
