@@ -1,6 +1,6 @@
 {
   "name": "phyrus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "authors": [
     "Yail Peralta <yailpz@hotmail.com>"
   ],
@@ -19,6 +19,9 @@
   ],
   "license": "MIT",
   "homepage": "phyrus.net",
+  "dependencies": {
+    "promise": "https://www.promisejs.org/polyfills/promise-6.1.0.js"
+  },
   "ignore": [
     "**/.*",
     "node_modules",
