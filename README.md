@@ -12,6 +12,8 @@ A simple library to make ajax request with XMLHttpRequest 2 and upload files eas
 <!-- You have to put the Html5 doctype -->
 <!DOCTYPE html>
 <html>
+  <!-- if you want compatibility with IE11 and less https://github.com/then/promise -->
+  <script src="https://www.promisejs.org/polyfills/promise-6.1.0.js"></script>
   <!-- phyrus -->
   <script src="phyrus.js"></script>
 </html>
@@ -21,6 +23,18 @@ A simple library to make ajax request with XMLHttpRequest 2 and upload files eas
 #### With Bower
 ```shell
   bower install phyrus
+```
+
+``` html
+<!-- You have to put the Html5 doctype -->
+<!DOCTYPE html>
+<html>
+  <!-- if you want compatibility with IE11 and less https://github.com/then/promise -->
+  <script src="lib/promise/index.js"></script>
+  <!-- phyrus -->
+  <script src="lib/phyrus.js"></script>
+</html>
+
 ```
 Example
 -------
