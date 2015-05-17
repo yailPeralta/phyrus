@@ -51,26 +51,43 @@
 
         _contains  = function (array, target) {
             return indexOf(array, target) !== -1;
+        },
+
+        _mergeOptions = function (options, defaultOptions) {
+
+            if(_isFunction(Object.assign)){
+                // use EcmaScript 6
+                return Object.assign({}, defaultOptions, options);
+            }
+
+            for (var attr in defaultOptions) {
+                if(defaultOptions.hasOwnProperty(attr)){
+                    if( !_isDefined(options[attr]) ){
+                        options[attr] = defaultOptions[attr];
+                    }
+                }
+            }
+            return options;
         };
 
     /**
      *
      * @returns {{request: Function}}
      */
-    phyrus.ajax = function () {
+    phyrus.ajax = function (url) {
 
         var
             // the XmlHttpRequest object
             XHR,
 
-            // the url where the request is make
-            url = (_isString(arguments[0])) ? arguments[0] : null,
+            // the url to which the request is sent, default the current page
+            targetUrl = (_isDefined(url) && _isString(url) && url !== '') ? url : global.location.href,
 
-            // the domain where the request is make
-            targetDomain = (url && url.toLowerCase().split('/')[2]) ? url.toLowerCase().split('/')[2] : null,
+            // the domain to which the request is sent
+            targetDomain = (targetUrl && targetUrl.toLowerCase().split('/')[2]) ? targetUrl.toLowerCase().split('/')[2] : null,
 
             // the domain where the app using this script is
-            ownDomain = window.location.host,
+            ownDomain = global.location.host,
 
             /**
              *
@@ -123,31 +140,28 @@
 
             request: function () {
                 var
-                    // custom options for ajax request
-                    options = arguments[0],
-
                     // defaults options
                     defaultOptions = {
                         method: 'GET',
-                        data: {},
+                        data: null,
+                        url: targetUrl,
                         async: true,
                         //text, arraybuffer, blob o document
                         responseType: 'text',
                         contentType: "application/x-www-form-urlencoded"
                     },
 
+                    // custom options for ajax request,
+                    options = ( _isObject(arguments[0]) )
+                        // if it's an object, combine both objects
+                        ? _mergeOptions(arguments[0],defaultOptions)
+                        // else default option are used
+                        : defaultOptions,
+
                     // pomise object
                     promise;
 
-                // If options is not an object
-                if (!_isObject(options)) {
-                    options = defaultOptions;
-                }
-
-                if(url){
-                    options.url = url;
-                }
-
+                // if method get append the data to the url
                 if (options.data && (options.method.toUpperCase() === 'GET')) {
                     options.url += '?';
                     var argCount = 0;
@@ -161,7 +175,7 @@
                     }
 
                     options.data = null;
-
+                // otherwise
                 }else if(options.data && (options.method.toUpperCase() === 'POST')
                     || (options.method.toUpperCase() === 'PUT')){
 
@@ -192,10 +206,21 @@
                             console.log(ownDomain + ' ---> ' + targetDomain);
 
                             if (!XHR) {
-                                throw new Error('CORS not supported');
+                                throw {
+                                    name: "CORSError",
+                                    message: "CORS is not supported!"
+                                }
                             }
+
                         } else {
                             XHR = createRequest(options.method, options.url, options.async || true );
+
+                            if (!XHR) {
+                                throw {
+                                    name: "XMLHttpRequestError",
+                                    message: "XMLHttpRequest is not supported!"
+                                }
+                            }
                         }
                     }catch(e){
                         // log the error
@@ -203,8 +228,8 @@
                     }
 
                     // fill the options
-                    XHR.responseType = options.responseType || defaultOptions.responseType;
-                    XHR.contentType  = options.contentType  || defaultOptions.contentType;
+                    XHR.responseType = options.responseType;
+                    XHR.contentType  = options.contentType;
 
                     console.log(options.data);
                     // send the request
@@ -259,7 +284,15 @@
             defaultOptions =  {
                 method: "POST",
                 contentType: "multipart/form-data",
-                progressBar: 'progress'
+                progressCallback: function (e) {
+                    // Listen to the upload progress.
+                    var progressBar = document.querySelector('progress');
+
+                    if (e.lengthComputable) {
+                        progressBar.value = (e.loaded / e.total) * 100;
+                        progressBar.textContent = progressBar.value; // Fallback for unsupported browsers.
+                    }
+                }
             },
 
             /**
@@ -279,10 +312,6 @@
 
                 options.data = formData;
 
-                options.contentType = options.contentType || defaultOptions.contentType;
-                options.method = options.method || defaultOptions.method;
-
-
                 var ajaxObj = self.ajax(url);
 
                 // request options
@@ -293,34 +322,20 @@
         // if use a simple input file
         if(_isFileList(firstArg)){
             // get the files
-            files = arguments[0];
+            files = firstArg;
         }
 
         // if the argument is an obj literal
         if(_isObject(firstArg)){
 
-            // initialize the options variable with their values
-            options = arguments[0];
+            // combine both objects
+            options = _mergeOptions(firstArg, defaultOptions);
+
         // else use default options
         }else{
             options = defaultOptions;
         }
 
-        // if there's no progress callback create one
-        if(!_isFunction(options.progressCallback)){
-
-            options.progressCallback = function (e) {
-                var progress = options.progressBar ? options.progressBar : defaultOptions.progressBar;
-
-                // Listen to the upload progress.
-                var progressBar = document.querySelector(progress);
-
-                if (e.lengthComputable) {
-                    progressBar.value = (e.loaded / e.total) * 100;
-                    progressBar.textContent = progressBar.value; // Fallback for unsupported browsers.
-                }
-            }
-        }
 
         // return uploadFiles object
         return {
