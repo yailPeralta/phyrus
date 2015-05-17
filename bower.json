@@ -20,7 +20,7 @@
   "license": "MIT",
   "homepage": "phyrus.net",
   "dependencies": {
-    "promise": "https://www.promisejs.org/polyfills/promise-6.1.0.js"
+    "promise/promise.js": "https://www.promisejs.org/polyfills/promise-6.1.0.js"
   },
   "ignore": [
     "**/.*",
