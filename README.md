@@ -13,7 +13,9 @@ A simple library to make ajax request with XMLHttpRequest 2 and upload files eas
 <!DOCTYPE html>
 <html>
   <!-- if you want compatibility with IE11 and less https://github.com/then/promise -->
+  <!--[if lte IE 11]><!-->
   <script src="https://www.promisejs.org/polyfills/promise-6.1.0.js"></script>
+  <!--<![endif]-->
   <!-- phyrus -->
   <script src="phyrus.js"></script>
 </html>
@@ -30,7 +32,9 @@ A simple library to make ajax request with XMLHttpRequest 2 and upload files eas
 <!DOCTYPE html>
 <html>
   <!-- if you want compatibility with IE11 and less https://github.com/then/promise -->
+  <!--[if lte IE 11]><!-->
   <script src="lib/promise/index.js"></script>
+   <!--<![endif]-->
   <!-- phyrus -->
   <script src="lib/phyrus/phyrus.js"></script>
 </html>
