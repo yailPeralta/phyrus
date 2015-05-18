@@ -32,7 +32,7 @@ A simple library to make ajax request with XMLHttpRequest 2 and upload files eas
   <!-- if you want compatibility with IE11 and less https://github.com/then/promise -->
   <script src="lib/promise/index.js"></script>
   <!-- phyrus -->
-  <script src="lib/phyrus.js"></script>
+  <script src="lib/phyrus/phyrus.js"></script>
 </html>
 
 ```
